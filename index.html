@@ -1,0 +1,50 @@
+<DOCTYPE! html>
+<head>
+<script>
+function computerPlay() {
+let selection = Math.floor(Math.random()*3);
+let array = ["rock", "paper", "scissors"];
+return array[selection];
+}
+
+function playRound(playerSelection, computerSelection) {
+    // your code here!
+function doesPlayerWin(player, computer) {
+    let array = ["rock", "scissors", "paper"];
+    let computerIndex = array.findIndex(type => type == computer);
+    let playerIndex = array.findIndex(type => type == player);
+    let loseIndex = ( (playerIndex + 1) > 2)? 0 : (playerIndex + 1);
+    if (computerIndex==loseIndex) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+    if (playerSelection==computerSelection) {
+        return(["It's a draw!", 0, 0])
+    } else if (doesPlayerWin(playerSelection, computerSelection)) {
+        return([`You Win! ${playerSelection} beats ${computerSelection}`, 1, 0]);
+    } else {
+       return([`You Lose! ${computerSelection} beats ${playerSelection}`, 0, 1]);
+    }
+}
+
+
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    while (playerScore < 5 && computerScore < 5) {
+        let roundAnswer = playRound(prompt("Choose rock, paper or scissors").toLowerCase(), computerPlay());
+        playerScore += roundAnswer[1];
+        computerScore += roundAnswer[2];
+        alert(roundAnswer[0] + " Score Player: " + playerScore + " Computer Score: " + computerScore);
+    }
+}
+game();
+</script>
+</head>
+<body>
+</body>
